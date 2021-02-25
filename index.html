@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tudo Verde | Enviar Mensagem</title>
+
+    <!-- Ícone -->
+    <link rel="icon" href="logo.png" type="image/png">
+    
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--Estilos Personalizados-->
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="stylesheet" href="./src/css/form.css">
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+</head>
+<body id="send-mensage">
+    <header id="menu">
+        <a target="_blank" href="https://www.instagram.com/tudoverdealimentos/">
+            <img id="logo" src="./src/img/logo.png" alt="Ahriados Store">
+        </a>
+    </header>
+
+    <main id="form">
+        <div class="main">
+            <div id="fields">
+                <form action="">
+                    <fieldset>
+                        <legend>Produto</legend>
+                        <div class="row">
+                            <div class="col-12">
+                                <select required name="product" id="product" onchange="changeProduct()" class="form-control">
+                                    <option value="">Selecione seu produto</option>
+                                </select>
+                            </div>
+
+                            <div class="col-6">
+                                <input type="text" name="nome" id="nome" class="form-control" placeholder="Seu nome">
+                            </div>
+
+                            <div class="col-6">
+                                <input type="text" name="price" id="price" class="form-control" placeholder="Valor" disabled>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Entrega</legend>
+                        <div class="row">
+                            <div class="col-12">
+                                <select required name="delivery" id="delivery" class="form-control" onchange="changeDeliveryFields()">
+                                    <option value="0">Selecione a forma de entrega</option>
+                                    <option value="1">Ponto Fixo</option>
+                                    <option value="2">Receber em Casa</option>
+                                </select>
+                            </div>
+
+                            <div id="home-delivery" class="col-12 d-none">
+                                <div class="row">
+                                    <div class="col-9 col-md-3">
+                                        <input placeholder="CEP" type="number" name="cep" id="cep" class="form-control">
+                                    </div>
+
+                                    <div class="col-3 col-md-1">
+                                        <button type="button" class="btn btn-primary btn-block" onclick="searchCEP()"><i class="fas fa-search"></i></button>
+                                    </div>
+
+                                    <div class="col-6 col-md-4">
+                                        <input placeholder="Estado" type="text" name="uf" id="uf" class="form-control">
+                                    </div>
+
+                                    <div class="col-6 col-md-4">
+                                        <input placeholder="Cidade" type="text" name="city" id="city" class="form-control">
+                                    </div>
+
+                                    <div class="col-9">
+                                        <input placeholder="Rua" type="text" name="street" id="street" class="form-control">
+                                    </div>
+
+                                    <div class="col-3">
+                                        <input placeholder="N°" type="number" name="number" id="number" class="form-control">
+                                    </div>
+
+                                    <div class="col-6">
+                                        <input placeholder="Complemento" type="text" name="complement" id="complement" class="form-control">
+                                    </div>
+
+                                    <div class="col-6">
+                                        <input placeholder="Bairro" type="text" name="district" id="district" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="point-delivery" class="col-12 d-none">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <select required name="point" id="point" class="form-control">
+                                            <option value="">Selecione o Ponto</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Pagamento</legend>
+                        <div class="row">
+                            <div class="col-12">
+                                <select required name="payment" id="payment" class="form-control" onchange="changePaymentFields()">
+                                    <option value="">Selecione a forma de pagamento</option>
+                                    <option value="1">Dinheiro</option>
+                                    <option value="2">Boleto Bancário</option>
+                                    <option value="3">Cartão</option>
+                                </select>
+                            </div>
+
+                            <div id="pay-money" class="col-12 d-none">
+                                <input type="number" class="form-control" name="coins" id="coins" placeholder="Troco para...">
+                            </div>    
+                        </div>
+                    </fieldset>
+
+                    <button onclick="send()" type="button" class="btn btn-block btn-success my-3 p-2">Enviar Mensagem <i class="fab fa-whatsapp"></i></button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer id="contacts">
+        <div class="lema">
+            <img src="./src/img/logo-verde.png" alt="Tudo Verde Store">
+        </div>
+
+        <div class="info">
+            <div>
+                <a href="https://www.instagram.com/tudoverdealimentos/">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <span>tudoverdealimentos</span>
+            </div>
+
+            <div>
+                <a href="https://api.whatsapp.com/send?phone=5571557191315366">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <span>(71) 99131-5366</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./src/scripts/main.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
